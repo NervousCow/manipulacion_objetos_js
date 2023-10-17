@@ -20,6 +20,16 @@ un array de personas mayores o igual a 18 años.
 
 */
 
+// const data = JSON.parse(personasJSON);
+// console.log(data)
+
+// const mayores18 = data.filter(p => {
+//     return p.edad >= 18
+// })
+
+// console.log(mayores18)
+
+
 /* 2 - Enunciado
 
 - Con el array de personas filtradas (resultado del enunciado anterior)
@@ -31,12 +41,66 @@ en el HTML (es decir, generar el contenido de forma dinámica).
 
 */
 
+// const body = document.getElementById("body")
+
+// mayores18.forEach(per => {
+//     const personDiv = document.createElement("div");
+
+//     const nombreH3 = document.createElement("h3");
+//     nombreH3.textContent = `Nombre: ${per.nombre}`;
+
+//     const edadSpan = document.createElement("span");
+//     edadSpan.textContent = `Edad: ${per.edad}`;
+
+//     personDiv.appendChild(nombreH3);
+//     personDiv.appendChild(edadSpan);
+
+//     body.appendChild(personDiv);
+
+// });
+
 /* 3 - BONUS TRACK
 
-- Si misión, en caso que decida aceptarla, es que la edad a filtrar
+- Su misión, en caso que decida aceptarla, es que la edad a filtrar
 en el primer enunciado no sea un valor escrito en este script, sino
 que sea un valor que se toma del HTML (un input).
 - Que toda la acción de filtrado (enunciado 1) y renderizado (enunciado 2)
 se dispare al presionar un botón en el HTML que usted agregue.
 
 */
+
+const data = JSON.parse(personasJSON);
+console.log(data)
+
+document.getElementById("btnFilter").addEventListener("click", function() {
+    const filterEdad = document.getElementById("edadFiltro").value;
+    const section = document.getElementById("filtered");
+
+    while (section.firstChild) {
+        section.removeChild(section.firstChild);
+    }
+
+    const mayores = data.filter(p => {
+        return p.edad >= filterEdad
+    });
+
+    
+    mayores.forEach(per => {
+        const personDiv = document.createElement("div");
+
+        const nombreH3 = document.createElement("h3");
+        nombreH3.textContent = `Nombre: ${per.nombre}`;
+
+        const edadSpan = document.createElement("span");
+        edadSpan.textContent = `Edad: ${per.edad}`;
+
+        personDiv.appendChild(nombreH3);
+        personDiv.appendChild(edadSpan);
+
+        section.appendChild(personDiv);
+
+    });
+
+});
+
+

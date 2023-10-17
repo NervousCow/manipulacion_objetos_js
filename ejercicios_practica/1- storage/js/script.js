@@ -21,6 +21,18 @@ con los datos almacenados en memoria, a fin de darle la bienvenida al usuario lo
 
 */
 
+// document.getElementById("btnIngresar").addEventListener("click", function() {
+//     const usuario = document.getElementById("usuario").value;
+//     const email = document.getElementById("email").value;
+
+//     localStorage.setItem("usuario", usuario);
+//     localStorage.setItem("email", email);
+
+//     document.getElementById("usuarioLogeado").textContent = `Usuario: ${usuario}`;
+//     document.getElementById("emailLogeado").textContent = `Email: ${email}`;
+
+// });
+
 /* 2 - Enunciado
 
 - Al comenzar el script se debe verificar si en memoria se encuentran
@@ -32,6 +44,26 @@ y deberá revelar la sección "logout" (quitar la clase hidden).
 
 */
 
+// const usuarioLoggeado = localStorage.getItem("usuario");
+// const emailLoggeado = localStorage.getItem("email");
+
+// if (usuarioLoggeado && emailLoggeado) {
+//     document.getElementById("usuarioLogeado").textContent = `Usuario: ${usuarioLoggeado}`;
+//     document.getElementById("emailLogeado").textContent = `Email: ${emailLoggeado}`;
+// };
+
+// document.getElementById("btnIngresar").addEventListener("click", function() {
+//     const usuario = document.getElementById("usuario").value;
+//     const email = document.getElementById("email").value;
+
+//     localStorage.setItem("usuario", usuario);
+//     localStorage.setItem("email", email);
+
+//     document.getElementById("usuarioLogeado").textContent = `Usuario: ${usuario}`;
+//     document.getElementById("emailLogeado").textContent = `Email: ${email}`;
+
+// });
+
 /* 3 - Enunciado
 
 - Debera capturar el evento "onclick" del boton "Salir". Cuando este
@@ -41,3 +73,41 @@ volverse a cargar debería aparecer nuevamente la sección de bienvenida
 ya que no debería haber más datos en memoria cargados.
 
 */
+
+const usuarioLoggeado = localStorage.getItem("usuario");
+const emailLoggeado = localStorage.getItem("email");
+
+if (usuarioLoggeado && emailLoggeado) {
+    document.getElementById("usuarioLogeado").textContent = `Usuario: ${usuarioLoggeado}`;
+    document.getElementById("emailLogeado").textContent = `Email: ${emailLoggeado}`;
+
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("logout").classList.remove("hidden");
+
+};
+
+document.getElementById("btnIngresar").addEventListener("click", () => {
+    const usuario = document.getElementById("usuario").value;
+    const email = document.getElementById("email").value;
+
+    localStorage.setItem("usuario", usuario);
+    localStorage.setItem("email", email);
+
+    document.getElementById("usuarioLogeado").textContent = `Usuario: ${usuario}`;
+    document.getElementById("emailLogeado").textContent = `Email: ${email}`;
+
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("logout").classList.remove("hidden");
+
+});
+
+document.getElementById("btnSalir").addEventListener("click", () => {
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("email");
+
+    document.getElementById("logout").classList.add("hidden");
+    document.getElementById("login").classList.remove("hidden");
+
+    location.reload();
+    
+})
